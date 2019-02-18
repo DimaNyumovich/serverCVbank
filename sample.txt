@@ -12,8 +12,6 @@ const app = express();
 // var db;
 
 
-let listPersons = require('./persons-data');
-
 const PORT = 3000;
 
 app.use(bodyParser.json());

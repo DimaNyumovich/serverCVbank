@@ -6,16 +6,6 @@ exports.all = function (cb) {
         cb(err, docs);
     });
 };
-// app.get('/persons', (req, res) => {
-//     db.get().collection('persons').find().toArray((err, docs) => {
-//             if (err) {
-//                 console.log(err);
-//                 return req.sendStatus(500);
-//             }
-//             res.send(docs);
-//         }
-//     )
-// });
 
 exports.findById = function (id, cb) {
     db.get().collection('persons').findOne({_id: ObjectID(id)}, (err, doc) => {
@@ -23,18 +13,8 @@ exports.findById = function (id, cb) {
     })
 };
 
-// app.get('/persons/:id', (req, res) => {
-//     db.get().collection('persons').findOne({_id: ObjectID(req.params.id)}, (err, doc) => {
-//         if (err) {
-//             console.log(err);
-//             return res.sendStatus(500);
-//         }
-//         res.send(doc);
-//     })
-// });
-
 exports.create = function (person, cb) {
-    db.get().collection('persons').insert(person, (err, result) => {
+    db.get().collection('persons').insertOne(person, (err, result) => {
         cb(err, result);
     })
 };

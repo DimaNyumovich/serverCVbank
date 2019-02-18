@@ -11,17 +11,6 @@ exports.all = function (req, res) {
     });
 };
 
-// app.get('/persons', (req, res) => {
-//     db.get().collection('persons').find().toArray((err, docs) => {
-//             if (err) {
-//                 console.log(err);
-//                 return req.sendStatus(500);
-//             }
-//             res.send(docs);
-//         }
-//     )
-// });
-
 exports.findById = function (req, res) {
     Persons.findById(req.params.id, function (err, doc) {
         if (err) {
@@ -34,7 +23,13 @@ exports.findById = function (req, res) {
 
 exports.create = function (req, res) {
     const person = {
-        name: req.body.name
+        name: req.body.name,
+        experience: req.body.experience,
+        contact: req.body.contact,
+        description: req.body.description,
+        minSalary: req.body.minSalary,
+        maxSalary: req.body.maxSalary,
+        skills: req.body.skills
     };
     Persons.create(person, function (err, result) {
         if (err) {
@@ -47,7 +42,7 @@ exports.create = function (req, res) {
 };
 
 exports.update = function (req, res) {
-    Persons.update(req.params.id, {$set: {name: req.body.name}}, function (err, result) {
+    Persons.update(req.params.id, {$set: {name: req.body}}, function (err, result) {
         if (err) {
             console.log(err);
             return res.sendStatus(500);
