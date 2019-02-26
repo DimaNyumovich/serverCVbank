@@ -1,0 +1,2 @@
+const routes = ["persons", "skills"];
+

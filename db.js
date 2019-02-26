@@ -9,7 +9,8 @@ exports.connect = function (url, dbName, cb) {
         cb({data: 'already connected'});
         // return state.db;
     } else {
-        return MongoClient.connect(url + dbName, function (err, client) {
+        //return
+        MongoClient.connect(url + dbName, function (err, client) {
             if (err) {
                 cb({error: err});
             } else {
