@@ -22,6 +22,8 @@
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "mongodb": "^3.1.13",
+    "mongoose": "^5.4.15",
+    "mongoose-unique-validator": "^2.0.2",
     "paperwork": "^2.1.1"
   }
 }
