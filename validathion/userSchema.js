@@ -10,6 +10,13 @@ const skillsSchema = new Schema({
 const userSchema = new Schema({
     username: {type: String, index: true, unique: true, required: true},
     password: {type: String, required: true},
+    person: {
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: 'persons', required: true
+    } | null
+});
+
+const personSchema = new Schema({
     name: {
         firstName: {type: String, required: true},
         lastName: {type: String, required: true}
@@ -28,7 +35,6 @@ const userSchema = new Schema({
     description: {type: String},
     minSalary: {type: Number},
     maxSalary: {type: Number},
-    //skills: {type: [String], required: true}
     skills: {
         type: [
             {
@@ -41,14 +47,17 @@ const userSchema = new Schema({
 
 userSchema.plugin(uniqueValidator);
 skillsSchema.plugin(uniqueValidator);
+personSchema.plugin(uniqueValidator);
 
 instances.users = userSchema;
 instances.skills = skillsSchema;
+instances.persons = personSchema;
 
 let instancesModel = {};
 
 instancesModel['users'] = mongoose.model('users', instances['users']);
 instancesModel['skills'] = mongoose.model('skills', instances['skills']);
+instancesModel['persons'] = mongoose.model('persons', instances['persons']);
 
 exports.checkUser = function (object, instanceName, cb) {
 
@@ -57,4 +66,3 @@ exports.checkUser = function (object, instanceName, cb) {
         cb(err, result);
     });
 };
-
